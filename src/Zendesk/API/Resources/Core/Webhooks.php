@@ -12,9 +12,6 @@ use Zendesk\API\Traits\Resource\FindAll;
 class Webhooks extends ResourceAbstract
 {
     use Defaults;
-    use FindAll {
-        findAll as traitFindAll;
-    }
 
     /**
      * {@inheritdoc}
@@ -39,7 +36,7 @@ class Webhooks extends ResourceAbstract
         $queryParams = array_filter(array_flip($params), [$this, 'filterParams']);
         $queryParams = array_merge($params, array_flip($queryParams));
 
-        return $this->traitFindAll($queryParams);
+        return $this->findAll($queryParams);
     }
 
     /**
@@ -53,3 +50,4 @@ class Webhooks extends ResourceAbstract
         return preg_match("/^sort|page[[a-zA-Z_]*]|filter[[a-zA-Z_]*](\\[\\]?)/", $param);
     }
 }
+
